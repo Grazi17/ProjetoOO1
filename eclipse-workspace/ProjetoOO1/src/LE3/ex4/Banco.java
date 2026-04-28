@@ -15,5 +15,82 @@ realizar os testes necessário, uma classe de testes deve ser implementada.
 */
 
 public class Banco {
+	// atributos de instância
 
+	private int numeroAgencia;
+	private int numero;
+	private String titular;
+	private double saldo;
+
+	// métodos construtores
+
+	public Banco(int numeroAgencia, int numero, String titular) {
+		
+		this.numeroAgencia = numeroAgencia;
+		this.numero = numero;
+		this.titular = titular;
+		this.saldo = 0.00;
+	}
+
+	// demais métodos da classe
+	public void sacar(double valor) {
+
+		if (this.saldo >= valor) {
+
+			this.saldo -= valor;
+			System.out.println("Saque realizado com sucesso.");
+
+		} else {
+
+			System.out.println("Saldo insuficiente.");
+		}
+	}
+
+	public void depositar(double valor) {
+
+		this.saldo += valor;
+		System.out.println("Depósito realizado com sucesso.");
+
+		this.calcularRendimentos();
+	}
+
+	public void imprimirSaldo() {
+
+		System.out.println("================================");
+		System.out.println("Número da Conta: " + this.numero);
+		System.out.println("Nome do Titular: " + this.titular);
+		System.out.println("Saldo: R$" + this.saldo);
+		System.out.println("================================");
+	}
+
+	private void calcularRendimentos() {
+
+		double rendimento = this.saldo * 0.10;
+		this.saldo += rendimento;
+	}
+
+	// método toString e métodos getters e setters
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public String getTitular() {
+		return titular;
+	}
+
+	public void setTitular(String titular) {
+		if (!titular.equals(""))
+			;
+		this.titular = titular;
+
+	}
+
+	@Override
+	public String toString() {
+		return "ContaBancaria [numero=" + numero + ", titular=" + titular + ", saldo=" + saldo + "]";
+	}
 }

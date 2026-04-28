@@ -23,4 +23,81 @@ Neutro 0 km/h
 
 public class Carro {
 
+	private int marcha;
+	private int velocidade;
+	private String modelo;
+
+	public Carro(String modelo) {
+
+		this.marcha = 0;
+		this.velocidade = 0;
+		this.modelo = modelo;
+	}
+
+	public void acelerar() {
+
+		velocidade += 5;
+
+		if (velocidade > 130) {
+			this.velocidade = 130;
+		}
+		this.trocarMarcha();
+	}
+
+	public void frear() {
+		velocidade -= 5;
+
+		if (velocidade < 0) {
+			velocidade = 0;
+		}
+		this.trocarMarcha();
+	}
+
+	private void trocarMarcha() {
+
+		if (this.velocidade == 0) {
+			this.marcha = 0;
+
+		}
+
+		else if (velocidade > 0 && velocidade < 20) {
+			this.marcha = 1;
+		}
+
+		else if (velocidade >= 20 && velocidade < 40) {
+			this.marcha = 2;
+		}
+
+		else if (velocidade >= 40 && velocidade < 60) {
+			this.marcha = 3;
+		} else if (velocidade >= 60 && velocidade < 90) {
+			this.marcha = 4;
+		} else {
+
+			this.marcha = 5;
+		}
+
+	}
+
+	public int getVelocidade() {
+		return velocidade;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public int getMarcha() {
+		return marcha;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	@Override
+	public String toString() {
+		return "Carro [marcha=" + marcha + ", velocidade=" + velocidade + ", modelo=" + modelo + "]";
+	}
+
 }
